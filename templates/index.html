@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Search</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Buscar Película</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Buscador de Películas</h1>
-        <form action="/search" method="POST">
-            <input type="text" name="movie_name" placeholder="Ingresa el nombre de la película" required>
-            <button type="submit">Buscar</button>
-        </form>
-    </div>
+    <h1>Buscar Información de Películas</h1>
+    <form action="/search" method="POST">
+        <label for="movie_title">Ingresa el título de la película:</label>
+        <input type="text" id="movie_title" name="movie_title" required>
+        <button type="submit">Buscar</button>
+    </form>
 </body>
 </html>

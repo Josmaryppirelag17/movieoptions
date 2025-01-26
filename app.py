@@ -3,9 +3,9 @@ import requests
 
 app = Flask(__name__)
 
-# Sustituye 'tu_clave_de_api' con tu clave de RapidAPI de OMDb
-OMDB_API_KEY = "28110f2d"
-OMDB_API_URL = "http://www.omdbapi.com/"
+# Configuración de la API
+API_KEY = "29f005f4c4bf034d8a7fc1c13f6b3126"  # Sustituye con tu clave de API de TMDb
+TMDB_API_URL = "https://api.themoviedb.org/3/search/movie"
 
 @app.route('/')
 def home():
@@ -20,30 +20,28 @@ def search_movie():
     if not movie_title:
         return render_template('error.html', message="Por favor, ingresa el título de una película.")
 
-    # Hacer solicitud a la API de OMDb para obtener los detalles de la película
-    url = f"{OMDB_API_URL}?t={movie_title}&apikey={OMDB_API_KEY}"
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Esto generará una excepción si la respuesta es un error (código 4xx o 5xx)
+    # Hacer solicitud a la API de TMDb
+    params = {
+        "api_key": API_KEY,
+        "query": movie_title,
+        "language": "es-ES"  # Configuración para obtener resultados en español
+    }
+
+    response = requests.get(TMDB_API_URL, params=params)
+
+    if response.status_code == 200:
         data = response.json()
-
-        if data.get("Response") == "True":
-            # Tomamos los detalles de la película
-            title = data.get("Title", "Título no disponible")
-            release_date = data.get("Released", "Fecha no disponible")
-            plot = data.get("Plot", "Sinopsis no disponible")
-            actors = data.get("Actors", "Actores no disponibles")
+        if data['results']:
+            # Tomamos el primer resultado de la lista de películas
+            movie = data['results'][0]
+            title = movie.get('title', "Título no disponible")
+            release_date = movie.get('release_date', "Fecha no disponible")
+            overview = movie.get('overview', "Sinopsis no disponible")
+            return render_template('result.html', title=title, release_date=release_date, overview=overview)
         else:
-            return render_template('error.html', message=f"No se encontró la película: {movie_title}.")
-
-        return render_template('result.html', title=title, release_date=release_date, plot=plot, actors=actors)
-
-    except requests.exceptions.RequestException as e:
-        # Si ocurre cualquier error en la solicitud, mostramos un mensaje genérico
-        return render_template('error.html', message="Hubo un error al conectar con OMDb. Intenta más tarde.")
-    except Exception as e:
-        # Si ocurre un error inesperado, lo mostramos en un mensaje
-        return render_template('error.html', message=f"Ocurrió un error inesperado: {str(e)}")
+            return render_template('error.html', message=f"No se encontraron resultados para: {movie_title}.")
+    else:
+        return render_template('error.html', message="Hubo un error al conectarse con TMDb. Intenta más tarde.")
 
 if __name__ == '__main__':
     app.run(debug=True)
