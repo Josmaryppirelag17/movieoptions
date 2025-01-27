@@ -1,0 +1,12 @@
+.error-card{
+  display: flex;
+
+}
+.error-img{
+  max-width: 30%;
+  height: 50%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  object-fit: contain;
+}

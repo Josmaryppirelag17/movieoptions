@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Error</title>
-</head>
-<body>
-    <h1>Error</h1>
-    <p>{{ message }}</p>
-    <br>
-    <a href="/">Volver a intentar</a>
-</body>
+    <link rel="stylesheet" href="../static/animations.css" />
+    <link rel="stylesheet" href="../static/result.css" />
+    <link rel="stylesheet" href="../static/error.css" />
+  </head>
+  <body>
+    <div class="background">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="card error-card">
+      <img
+        class="error-img"
+        src="../static/img/undraw_cancel_7zdh.svg"
+        alt="cancel"
+      />
+      <div class="error-info">
+        <h1>Error</h1>
+        <p>{{ message }}</p>
+        <br />
+        <a href="/">Volver a intentar</a>
+      </div>
+    </div>
+  </body>
 </html>

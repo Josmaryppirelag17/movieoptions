@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resultados de la Búsqueda</title>
-</head>
-<body>
+    <link rel="stylesheet" href="../static/animations.css">
+    <link rel="stylesheet" href="../static/result.css">
+  </head>
+  <body>
+    <div class="background">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="card">
     <h1>Información de la Película</h1>
     <p><strong>Título:</strong> {{ title }}</p>
     <p><strong>Fecha de Lanzamiento:</strong> {{ release_date }}</p>
     <p><strong>Sinopsis:</strong> {{ overview }}</p>
-    <br>
+    <br />
     <a href="/">Volver a buscar otra película</a>
-</body>
+    </div>
+
+  </body>
+
+  <footer class="foot">2024 | Josmary Pirela & Edward Villalobos</footer>
 </html>
